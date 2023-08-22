@@ -87,11 +87,23 @@ class ThirdViewController: UIViewController {
     
     let profileImage = {
         let view = UIImageView()
-        view.image = UIImage(named: "FairyOrb")
+        view.image = UIImage(named: "믿어핑")
+        view.backgroundColor = .white
         view.contentMode = .scaleAspectFit
-        view.layer.cornerRadius = view.layer.frame.width/2
+        view.layer.cornerRadius = 35
+        view.layer.cornerCurve = .continuous
         view.clipsToBounds = true
         return view
+    }()
+    
+    let nameLabel = {
+        let label = UILabel()
+        label.text = "Louie Shin"
+        label.backgroundColor = .clear
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
     }()
     
     override func viewDidLoad() {
@@ -108,6 +120,7 @@ class ThirdViewController: UIViewController {
         view.addSubview(bottomView)
         view.addSubview(mainStackView)
         view.addSubview(profileImage)
+        view.addSubview(nameLabel)
         
         let borderLine = CALayer()
         borderLine.borderWidth = 5
@@ -150,9 +163,7 @@ class ThirdViewController: UIViewController {
         self.navigationItem.rightBarButtonItems =
         [settingBarButton, qrCodeBarButton, giftBarButton]
     }
-    
-    
-    
+        
     func setConstraints() {
         backgroundImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -172,7 +183,14 @@ class ThirdViewController: UIViewController {
         profileImage.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.bottom.equalTo(mainStackView.snp.top).offset(-110)
-            make.size.equalTo(CGSize(width: 100, height: 100))
+            make.size.equalTo(100)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(profileImage.snp_bottomMargin).offset(10)
+            make.width.equalTo(profileImage)
+            make.height.equalTo(profileImage.snp.height).multipliedBy(0.3)
         }
         
         
